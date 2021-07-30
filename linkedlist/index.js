@@ -60,6 +60,38 @@ class LinkedList {
 
     this.head = this.head.next;
   }
+
+  removeLast() {
+    if (!this.head) {
+      return;
+    }
+
+    if (!this.head.next) {
+      this.head = null;
+      return;
+    }
+
+    let previous = this.head;
+    let node = this.head.next;
+    while (node.next) {
+      previous = node;
+      node = node.next;
+    }
+
+    previous.next = null;
+  }
+
+  insertLast(data) {
+    const last = this.getLast();
+
+    if (last) {
+      // There are some existing nodes in our chain
+      last.next = new Node(data);
+    } else {
+      // The chain is empty!
+      this.head = new Node(data);
+    }
+  }
 }
 
 module.exports = { Node, LinkedList };
